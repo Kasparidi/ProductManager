@@ -1,5 +1,12 @@
 package ru.netology.domain;
 
-public class Smartphone {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class Smartphone extends Product{
     private String manufacturer;
 }
