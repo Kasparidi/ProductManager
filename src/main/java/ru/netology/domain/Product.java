@@ -3,6 +3,7 @@ package ru.netology.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.netology.repository.ProductRepository;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -12,35 +13,22 @@ public class Product {
     private String name;
     private int price;
 
-//    public Product(int id, String name, int price) {
-//        this.id = id;
-//        this.name = name;
-//        this.price = price;
-//    }
-//
-//    public Product () {}
-//
-//    public int getId() {
-//        return id;
-//    }
-//
-//    public void setId(int id) {
-//        this.id = id;
-//    }
-//
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public void setName(String name) {
-//        this.name = name;
-//    }
-//
-//    public int getPrice() {
-//        return price;
-//    }
-//
-//    public void setPrice(int price) {
-//        this.price = price;
-//    }
+    private ProductRepository repository;
+    public Product (ProductRepository repository) {
+        this.repository = repository;
+    }
+
+    public boolean matches(String text) {
+        Product[] result = new Product[0];
+        for (Product product: repository.findAll()) {
+            if (product.matches(text)) {
+                Product[] tmp = new Product[result.length + 1];
+                System.arraycopy(result, 0, tmp, 0, result.length);
+                tmp[tmp.length - 1] = product;
+                result = tmp;
+            }
+            return true;
+        }
+        return false;
+    }
 }
