@@ -46,4 +46,31 @@ public class ProductManagerTest {
         assertArrayEquals(expected, actual);
     }
 
+    @Test
+    public void searchByBookAuthor() {
+        Product[] returned = new Product[] {first, second, third, forth};
+        doReturn(returned).when(repository).findAll();
+        Product[] actual = manager.searchBy("Nabokov");
+        Product[] expected = new Product[] {second};
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void searchBySmartphoneName() {
+        Product[] returned = new Product[] {first, second, third, forth};
+        doReturn(returned).when(repository).findAll();
+        Product[] actual = manager.searchBy("HRY-LX1T");
+        Product[] expected = new Product[] {third};
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void searchBySmartphoneManufacturer() {
+        Product[] returned = new Product[] {first, second, third, forth};
+        doReturn(returned).when(repository).findAll();
+        Product[] actual = manager.searchBy("Huawei");
+        Product[] expected = new Product[] {forth};
+        assertArrayEquals(expected, actual);
+    }
+
 }
