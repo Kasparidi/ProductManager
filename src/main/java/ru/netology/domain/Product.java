@@ -14,6 +14,9 @@ public class Product {
     private int price;
 
     public boolean matches(String search) {
-        return matches(search);
+        if (getName().equalsIgnoreCase(search)) {
+            return true;
+        }
+        return false;
     }
 }
