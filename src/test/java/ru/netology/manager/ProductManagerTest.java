@@ -38,6 +38,24 @@ public class ProductManagerTest {
     }
 
     @Test
+    public void searchNothingWhenEmpty() {
+        Product[] returned = new Product[] {};
+        doReturn(returned).when(repository).findAll();
+        Product[] actual = manager.searchBy("Anna Karenina");
+        Product[] expected = new Product[] {};
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void searchNothingWhenOne() {
+        Product[] returned = new Product[] {first};
+        doReturn(returned).when(repository).findAll();
+        Product[] actual = manager.searchBy("Tolstoy");
+        Product[] expected = new Product[] {first};
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
     public void searchByBookName() {
         Product[] returned = new Product[] {first, second, third, forth};
         doReturn(returned).when(repository).findAll();
