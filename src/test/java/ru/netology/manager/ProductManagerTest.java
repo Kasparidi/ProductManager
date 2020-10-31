@@ -72,5 +72,4 @@ public class ProductManagerTest {
         Product[] expected = new Product[] {forth};
         assertArrayEquals(expected, actual);
     }
-
 }
